@@ -1,5 +1,5 @@
 # PRM_HOSP
-Code for the model 'Perceptual Reality Monitoring as Higher-Order inference on Sensory Precision' (PRM HOSP)
+Code for the model 'Perceptual Reality Monitoring as Higher-Order inference on Sensory Precision' (PRM HOSP). Link to pre-print: https://osf.io/preprints/psyarxiv/36xdz_v2. 
 
 The model is described in 'RPM_HOSP_model.txt' and can be run using 'PRM_HOSP_evaluation.m'. Each folder contains a different set of simulations as described in the paper. 
 
