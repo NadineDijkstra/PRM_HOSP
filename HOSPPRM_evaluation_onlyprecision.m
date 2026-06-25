@@ -1,0 +1,37 @@
+function samples = HOSPPRM_evaluation_onlyprecision(X, Rprior, Wprior, nsamples, Wlambda, Rpp)
+
+% Define model structure
+mu(1,:) = [0 0]; % w0
+mu(2,:) = [2 0]; % w1
+mu(3,:) = [0 2]; % w2
+
+% Uninformative priors
+if nargin < 6
+    App = 12; Rpp = 12; % precision of the priors (12 is flat/[1 1])
+end
+
+% Convert priors to beta Parameters
+betaR = estBetaParameters(Rprior,1/Rpp);
+
+% Run chain for experimental data
+parameters = {'pW', 'pR','senselambda'};  % The parameter(s) to be monitored.
+adaptSteps = 1000;        % Number of steps to "tune" the samplers.
+nBurnin = 1000;           % Number of steps to "burn-in" the samplers.
+nChains = 3;              % Number of chains to run.
+numSavedSteps=5000;       % Total number of steps in chains to save.
+thinSteps=1;              % Number of steps to "thin" (1=keep every step).
+nIter = ceil( ( numSavedSteps * thinSteps ) / nChains ); % Steps per chain.
+
+data = struct('X',X,'wprior0',Wprior(1),'wprior1',Wprior(2),'wprior2',Wprior(3),...
+    'aR',betaR(1),'bR',betaR(2),'mu',mu,'nsamples',nsamples,'perceptlambda',Wlambda); % with precision on the A and R priors
+
+% initial values latent variables
+for c = 1:nChains
+    init0(c) = struct;
+end
+
+samples = matjags(data,...
+    fullfile(pwd, 'HOSPPRM_onlyprecision_model.txt'), init0 ,...
+    'nChains', nChains, 'monitorParams', parameters, ...
+    'nBurnin', nBurnin, 'nSamples', nIter, ...
+    'verbosity',0);

@@ -1,0 +1,23 @@
+model {
+
+# Sample sensory data
+for (i in 1 : nsamples) {
+    # first draw sample of W from Dirichlet prior
+    w[i] ~ dcat(pW)
+    X[i,] ~ dmnorm(mu[w[i],], tau)
+  }
+
+  alpha[1] <- perceptlambda*wprior0 
+  alpha[2] <- perceptlambda*wprior1 
+  alpha[3] <- perceptlambda*wprior2 
+  pW[1:3] ~ ddirch(alpha)
+
+  ## covariance component
+  # given sensory variance in X 
+
+  tau[1,1] <- senselambda
+  tau[1,2] <- 0
+  tau[2,1] <- 0
+  tau[2,2] <- senselambda
+
+}
