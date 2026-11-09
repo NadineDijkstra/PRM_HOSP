@@ -44,7 +44,7 @@ for m = 1:length(gen_mu)
         X = repmat(gen_mu(m,:),nSamples,1) + randn(nSamples,2)*R;
    
         % evaluate model
-        samples = HOSS_evaluation_full(X, Aprior, Rprior, Wprior,nSamples, Wlambda, App, Rpp);
+        samples = HOSPPRM_evaluation_full(X, Aprior, Rprior, Wprior,nSamples, Wlambda, App, Rpp);
 
         % Extract maximum a posteriori (MAP) estimates
         tmp = samples.pA(:);
