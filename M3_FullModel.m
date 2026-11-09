@@ -128,7 +128,7 @@ for m = 1:N
         X = repmat(gen_mu,nSamples,1) + randn(nSamples,2)*R;
    
         % evaluate model
-        samples = HOSS_evaluation_full(X, Aprior, Rprior, Wprior, nSamples, Wlambdas(m), App, Rpp);
+        samples = HOSPPRM_evaluation_full(X, Aprior, Rprior, Wprior, nSamples, Wlambdas(m), App, Rpp);
 
         % Extract maximum a posteriori (MAP) estimates
         tmp = samples.pA(:);
@@ -214,7 +214,7 @@ for m = 1:N
         X = repmat(gen_mu,nSamples,1) + randn(nSamples,2)*R;
    
         % evaluate model
-        samples = HOSS_evaluation_full(X, Aprior, Rprior, Wprior, nSamples, Wlambda, App(m), Rpp);
+        samples = HOSPPRM_evaluation_full(X, Aprior, Rprior, Wprior, nSamples, Wlambda, App(m), Rpp);
 
         % Extract maximum a posteriori (MAP) estimates
         tmp = samples.pA(:);
@@ -302,7 +302,7 @@ for m = 1:N
         X = repmat(gen_mu,nSamples,1) + randn(nSamples,2)*R;
    
         % evaluate model
-        samples = HOSS_evaluation_full(X, Aprior(m), Rprior(m), Wprior(m), nSamples, Wlambda(m), App(m), Rpp(m));
+        samples = HOSPPRM_evaluation_full(X, Aprior(m), Rprior(m), Wprior(m), nSamples, Wlambda(m), App(m), Rpp(m));
 
         % Extract maximum a posteriori (MAP) estimates
         tmp = samples.pA(:);
