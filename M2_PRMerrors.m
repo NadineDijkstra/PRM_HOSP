@@ -39,7 +39,7 @@ for i = 1:nRep
     X = repmat(gen_mu,nSamples,1) + randn(nSamples,2)*R;
 
     % evaluate model
-    samples = HOSS_evaluation_onlyprecision(X, Rprior, Wprior,nSamples, Wlambda, Rpp);
+    samples = HOSPPRM_evaluation_onlyprecision(X, Rprior, Wprior,nSamples, Wlambda, Rpp);
     allSamples{i} = samples;
 
     % Extract maximum a posteriori (MAP) estimates
@@ -90,7 +90,7 @@ for i = 1:nRep
     X = repmat(gen_mu,nSamples,1) + randn(nSamples,2)*R;
 
     % evaluate model
-    samples = HOSS_evaluation_onlyprecision(X, Rprior, Wprior,nSamples, Wlambda, Rpp);
+    samples = HOSPPRM_evaluation_onlyprecision(X, Rprior, Wprior,nSamples, Wlambda, Rpp);
     allSamples{i} = samples;
 
     % Extract maximum a posteriori (MAP) estimates
@@ -144,7 +144,7 @@ for w = 1:2
         X = repmat(gen_mu,nSamples,1) + randn(nSamples,2)*R;
    
         % evaluate model
-        samples = HOSS_evaluation_onlyprecision(X, Rprior, Wprior,nSamples, Wlambdas(w), Rpp);
+        samples = HOSPPRM_evaluation_onlyprecision(X, Rprior, Wprior,nSamples, Wlambdas(w), Rpp);
         allSamples{i} = samples;
 
         % Extract maximum a posteriori (MAP) estimates
